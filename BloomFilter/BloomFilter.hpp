@@ -23,7 +23,7 @@ public:
 
   void add(const char *str){
     m_bitmap->turnOn(HashBKDR<char>(str)%1024);
-    m_bitmap->turnOn(HashAP<char>(str));
+    m_bitmap->turnOn(HashAP<char>(str)%1024);
     m_bitmap->turnOn(HashDEK<char>(str)%1024);
   };
 
