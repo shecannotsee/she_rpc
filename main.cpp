@@ -5,16 +5,16 @@
 
 using namespace std;
 
-//¼Ù×°¸Ãº¯ÊıÎªµ÷ÓÃº¯Êı£¬ÊäÈëÎªÔ¶³ÌÊäÈë²ÎÊı£¬Êä³öÎª·µ»ØÊä³ö
+//å‡è£…è¯¥å‡½æ•°ä¸ºè°ƒç”¨å‡½æ•°ï¼Œè¾“å…¥ä¸ºè¿œç¨‹è¾“å…¥å‚æ•°ï¼Œè¾“å‡ºä¸ºè¿”å›è¾“å‡º
 int main()
 {
-	string use_function_name;//µ÷ÓÃrpcµÄÃû³Æ
-	rpc_register example;//rpcÊµÀı
-	string result;//µ÷ÓÃ½á¹û
+	string use_function_name;//è°ƒç”¨rpcçš„åç§°
+	rpc_register example;//rpcå®ä¾‹
+	string result;//è°ƒç”¨ç»“æœ
 
-	example.regis();//×¢²á·şÎñ
+	example.regis();//æ³¨å†ŒæœåŠ¡
 	
-	//Ä£Äâ·şÎñ¶Ë³ÖĞø¿ªÆô
+	//æ¨¡æ‹ŸæœåŠ¡ç«¯æŒç»­å¼€å¯
 	while (1) {
 part1:
 		use_function_name = "";

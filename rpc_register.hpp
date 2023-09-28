@@ -4,37 +4,35 @@
 #include <string>
 #include "rpc_function.hpp"
 
-class rpc_register
-{
+class rpc_register {
 public:
 	rpc_register();
-	~rpc_register();
+	~rpc_register() = default;
 
 	void regis();
 
-	//¶Ô´«Èë²ÎÊı½øĞĞ¼ì²é,rpc_function.j_add
+	//å¯¹ä¼ å…¥å‚æ•°è¿›è¡Œæ£€æŸ¥,rpc_function.j_add
 	int link_to_function(std::string class_function_name);
 
-	//µ÷ÓÃ¹ı³Ì
+	//è°ƒç”¨è¿‡ç¨‹
 	std::string call_action(std::string function_parameter);
 
 private:
-	std::string m_class_name;//ÉÏÒ»´Îµ÷ÓÃµÄÀàÃû,ÔÚÃ¿´Îµ÷ÓÃÖ®ºó½øĞĞÖØÖÃ
-	std::string m_function_name;//ÉÏÒ»´Îµ÷ÓÃµÄº¯ÊıÃû,ÔÚÃ¿´Îµ÷ÓÃÖ®ºó½øĞĞÖØÖÃ
-	std::string m_function_parameter;//ÉÏÒ»´Îµ÷ÓÃµÄº¯Êı²ÎÊı,ÔÚÃ¿´Îµ÷ÓÃÖ®ºó½øĞĞÖØÖÃ
+	std::string m_class_name;//ä¸Šä¸€æ¬¡è°ƒç”¨çš„ç±»å,åœ¨æ¯æ¬¡è°ƒç”¨ä¹‹åè¿›è¡Œé‡ç½®
+	std::string m_function_name;//ä¸Šä¸€æ¬¡è°ƒç”¨çš„å‡½æ•°å,åœ¨æ¯æ¬¡è°ƒç”¨ä¹‹åè¿›è¡Œé‡ç½®
+	std::string m_function_parameter;//ä¸Šä¸€æ¬¡è°ƒç”¨çš„å‡½æ•°å‚æ•°,åœ¨æ¯æ¬¡è°ƒç”¨ä¹‹åè¿›è¡Œé‡ç½®
 
-	std::vector<std::string> m_regis_class;//ÒÑ×¢²áÀà
-	std::vector<std::string> m_regis_function;//ÒÑ×¢²áº¯Êı
+	std::vector<std::string> m_regis_class;//å·²æ³¨å†Œç±»
+	std::vector<std::string> m_regis_function;//å·²æ³¨å†Œå‡½æ•°
 
-	std::string m_rpc_result;//µ÷ÓÃ½á¹û
+	std::string m_rpc_result;//è°ƒç”¨ç»“æœ
 
 	void fool(std::string function_parameter);
 	
 
-};
+};// class rpc_register
 
-rpc_register::rpc_register()
-{
+rpc_register::rpc_register() {
 	m_class_name = "";
 	m_function_name = "";
 	m_function_parameter = "";
@@ -42,22 +40,17 @@ rpc_register::rpc_register()
 	m_rpc_result = "";
 }
 
-rpc_register::~rpc_register()
-{
-}
-
-//½«ĞèÒªÊ¹ÓÃµÄÔ¶³Ìµ÷ÓÃµÄÀàºÍº¯Êı×¢²á½øÈ¥
-void rpc_register::regis()
-{
+//å°†éœ€è¦ä½¿ç”¨çš„è¿œç¨‹è°ƒç”¨çš„ç±»å’Œå‡½æ•°æ³¨å†Œè¿›å»
+void rpc_register::regis() {
 	m_regis_class.push_back("rpc_function");
 	m_regis_function.push_back("rpc_function::j_add");
 	m_regis_function.push_back("rpc_function::j_subtraction");
 	m_regis_function.push_back("rpc_function::c_multiplication");
 }
-//¶ÔÓ¦µ÷ÓÃ
-void rpc_register::fool(std::string function_parameter)
-{
-	//1.²ÎÊı×ª»»Îª¿ÉÓÃ²ÎÊı
+
+//å¯¹åº”è°ƒç”¨
+void rpc_register::fool(std::string function_parameter) {
+	//1.å‚æ•°è½¬æ¢ä¸ºå¯ç”¨å‚æ•°
 	std::vector<int> use_para;
 	int temp = 0;
 	for (int i = 0; i < function_parameter.size(); i++) {
@@ -73,7 +66,7 @@ void rpc_register::fool(std::string function_parameter)
 	use_para.push_back(temp);
 	temp = 0;
 
-	//2.¶ÔÊµÀı½øĞĞµ÷ÓÃ£¬²¢ÇÒ½«½á¹û´æÈëm_result
+	//2.å¯¹å®ä¾‹è¿›è¡Œè°ƒç”¨ï¼Œå¹¶ä¸”å°†ç»“æœå­˜å…¥m_result
 	rpc_function rpc_function_example;
 	if (m_class_name == "rpc_function") {
 		if (m_function_name == "j_add")
@@ -85,13 +78,12 @@ void rpc_register::fool(std::string function_parameter)
 	}
 }
 
-//¼ì²é
-int rpc_register::link_to_function(std::string class_function_name)
-{
+//æ£€æŸ¥
+int rpc_register::link_to_function(std::string class_function_name) {
 	m_class_name = "";
 	m_function_name = "";
 	m_function_parameter = "";
-	//1.½âÎöclassºÍfunction
+	//1.è§£æclasså’Œfunction
 	std::string temp = "";
 	for (int i = 0; i < class_function_name.size(); i++) {
 		if (class_function_name[i] != '.') {
@@ -104,22 +96,21 @@ int rpc_register::link_to_function(std::string class_function_name)
 	}
 	m_function_name = temp;
 
-	//2.¶Ô½á¹û½øĞĞ¼ì²é£¬ÊÇ·ñÓĞ¶ÔÓ¦µÄÀàºÍº¯Êı¿ÉÒÔÊ¹ÓÃ
+	//2.å¯¹ç»“æœè¿›è¡Œæ£€æŸ¥ï¼Œæ˜¯å¦æœ‰å¯¹åº”çš„ç±»å’Œå‡½æ•°å¯ä»¥ä½¿ç”¨
 	temp = "";
 	temp += m_class_name;
 	temp += "::";
 	temp += m_function_name;
 	for (int i = 0; i < m_regis_function.size(); i++) {
 		if (temp == m_regis_function[i]) {
-			return 1;//ÓĞ¶ÔÓ¦µÄº¯Êı¿ÉÓÃ
+			return 1;//æœ‰å¯¹åº”çš„å‡½æ•°å¯ç”¨
 		}
 	}
-	return 0;//ÎŞ¿ÉÓÃº¯Êı
+	return 0;//æ— å¯ç”¨å‡½æ•°
 }
 
-//µ÷ÓÃ
-std::string rpc_register::call_action(std::string function_parameter)
-{
+//è°ƒç”¨
+std::string rpc_register::call_action(std::string function_parameter) {
 	fool(function_parameter);
 	return m_rpc_result;
 }
